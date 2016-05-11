@@ -1,3 +1,8 @@
+import jwt
+
+from datetime import datetime, timedelta
+
+from django.conf import settings
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
 )
@@ -48,8 +53,20 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
+    @property
+    def token(self):
+        return self._generate_jwt_token()
+
     def get_full_name(self):
         return self.username
 
     def get_short_name(self):
         return self.username
+
+    def _generate_jwt_token(self):
+        dt = datetime.now() + timedelta(days=60)
+
+        return jwt.encode({
+            'id': self.pk,
+            'exp': int(dt.strftime('%s'))
+        }, settings.SECRET_KEY, algorithm='HS256')
