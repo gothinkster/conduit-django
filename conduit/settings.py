@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_extensions',
+    'rest_framework',
+
     'conduit.apps.articles',
     'conduit.apps.authentication',
     'conduit.apps.core',
