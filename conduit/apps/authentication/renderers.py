@@ -12,6 +12,9 @@ class UserJSONRenderer(ConduitJSONRenderer):
         # decode it before rendering the User object.
         token = data.get('token', None)
 
+        if errors is not None:
+            return super(UserJSONRenderer, self).render(data)
+
         if token is not None and isinstance(token, bytes):
             # Also as mentioned above, we will decode `token` if it is of type
             # bytes.

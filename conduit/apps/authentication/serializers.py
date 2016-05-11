@@ -157,6 +157,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
+        
         # List all of the fields that could possibly be included in a request
         # or response, including fields specified explicitly above.
         fields = ['email', 'username', 'password', 'token']

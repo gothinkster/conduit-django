@@ -23,6 +23,7 @@ class UserManager(BaseUserManager):
 
     def create_user(self, username, email, password=None):
         """Create and return a `User` with an email, username and password."""
+
         if username is None:
             raise TypeError('Users must have a username.')
 
@@ -42,6 +43,7 @@ class UserManager(BaseUserManager):
         Superuser powers means that this use is an admin that can do anything
         they want.
         """
+
         if password is None:
             raise TypeError('Superusers must have a password.')
 
