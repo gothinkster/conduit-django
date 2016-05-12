@@ -90,3 +90,6 @@ ENV/
 
 # SQLite3 database
 db.sqlite3
+
+# Test code file
+__test__.py
