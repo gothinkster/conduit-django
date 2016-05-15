@@ -5,11 +5,7 @@ from rest_framework.response import Response
 
 from .exceptions import ProfileDoesNotExist
 from .models import Profile
-<<<<<<< HEAD
 from .renderers import ProfileJSONRenderer
-=======
-from .renderers import NewProfileJSONRenderer, ProfileJSONRenderer
->>>>>>> WIP
 from .serializers import ProfileSerializer
 
 
