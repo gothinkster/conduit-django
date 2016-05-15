@@ -5,13 +5,13 @@ from rest_framework.response import Response
 
 from .exceptions import ProfileDoesNotExist
 from .models import Profile
-from .renderers import NewProfileJSONRenderer, ProfileJSONRenderer
+from .renderers import ProfileJSONRenderer
 from .serializers import ProfileSerializer
 
 
 class ProfileRetrieveAPIView(RetrieveAPIView):
     permission_classes = (AllowAny,)
-    renderer_classes = (NewProfileJSONRenderer,)
+    renderer_classes = (ProfileJSONRenderer,)
     serializer_class = ProfileSerializer
 
     def retrieve(self, request, username, *args, **kwargs):
