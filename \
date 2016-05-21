@@ -1,0 +1,48 @@
+Favoriting complete.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Tue May 10 19:01:03 2016 -0700
+#
+# rebase in progress; onto f0ba70a
+# You are currently editing a commit while rebasing branch '06-favoriting' on 'f0ba70a'.
+#
+# Changes to be committed:
+#	modified:   conduit/apps/articles/__init__.py
+#	new file:   conduit/apps/articles/migrations/0001_initial.py
+#	new file:   conduit/apps/articles/migrations/0002_auto_20160524_0527.py
+#	new file:   conduit/apps/articles/migrations/0002_comment.py
+#	new file:   conduit/apps/articles/migrations/0003_merge.py
+#	new file:   conduit/apps/articles/migrations/__init__.py
+#	new file:   conduit/apps/articles/models.py
+#	new file:   conduit/apps/articles/renderers.py
+#	new file:   conduit/apps/articles/serializers.py
+#	new file:   conduit/apps/articles/signals.py
+#	new file:   conduit/apps/articles/urls.py
+#	new file:   conduit/apps/articles/views.py
+#	modified:   conduit/apps/authentication/__init__.py
+#	modified:   conduit/apps/authentication/models.py
+#	modified:   conduit/apps/authentication/renderers.py
+#	modified:   conduit/apps/authentication/serializers.py
+#	new file:   conduit/apps/authentication/signals.py
+#	modified:   conduit/apps/authentication/views.py
+#	modified:   conduit/apps/core/exceptions.py
+#	new file:   conduit/apps/core/models.py
+#	new file:   conduit/apps/core/renderers.py
+#	new file:   conduit/apps/core/utils.py
+#	new file:   conduit/apps/profiles/migrations/0001_initial.py
+#	new file:   conduit/apps/profiles/migrations/0002_auto_20160524_0527.py
+#	new file:   conduit/apps/profiles/migrations/0002_profile_relationships.py
+#	new file:   conduit/apps/profiles/migrations/0003_auto_20160521_2102.py
+#	new file:   conduit/apps/profiles/migrations/0004_profile_favorites.py
+#	new file:   conduit/apps/profiles/migrations/0005_merge.py
+#	new file:   conduit/apps/profiles/migrations/__init__.py
+#	new file:   conduit/apps/profiles/models.py
+#	new file:   conduit/apps/profiles/renderers.py
+#	new file:   conduit/apps/profiles/serializers.py
+#	new file:   conduit/apps/profiles/urls.py
+#	new file:   conduit/apps/profiles/views.py
+#	modified:   conduit/settings.py
+#	modified:   conduit/urls.py
+#
