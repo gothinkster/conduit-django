@@ -1,10 +1,8 @@
-import json
-
 from conduit.apps.core.renderers import ConduitJSONRenderer
 
 
 class UserJSONRenderer(ConduitJSONRenderer):
-    namespace = 'user'
+    object_label = 'user'
 
     def render(self, data, media_type=None, renderer_context=None):
         # If we recieve a `token` key as part of the response, it will by a

@@ -15,8 +15,14 @@ class ProfileRetrieveAPIView(RetrieveAPIView):
     serializer_class = ProfileSerializer
 
     def retrieve(self, request, username, *args, **kwargs):
+        # Try to retrieve the requested profile and throw an exception if the
+        # profile could not be found.
         try:
-            profile = Profile.objects.select_related('user').get(user__username=username)
+            # We use the `select_related` method to avoid making unnecessary
+            # database calls.
+            profile = Profile.objects.select_related('user').get(
+                user__username=username
+            )
         except Profile.DoesNotExist:
             raise ProfileDoesNotExist
 
