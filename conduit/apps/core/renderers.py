@@ -7,6 +7,7 @@ from rest_framework.utils.serializer_helpers import ReturnList
 class ConduitJSONRenderer(JSONRenderer):
     charset = 'utf-8'
     object_label = 'object'
+    object_label_plural = 'objects'
 
     def render(self, data, media_type=None, renderer_context=None):
         if isinstance(data, ReturnList):
@@ -15,7 +16,7 @@ class ConduitJSONRenderer(JSONRenderer):
             )
 
             return json.dumps({
-                self.namespace_plural: _data
+                self.object_label_plural: _data
             })
         else:
             # If the view throws an error (such as the user can't be authenticated

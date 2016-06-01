@@ -11,7 +11,7 @@ from .serializers import ProfileSerializer
 
 class ProfileRetrieveAPIView(RetrieveAPIView):
     permission_classes = (AllowAny,)
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.select_related('user')
     renderer_classes = (ProfileJSONRenderer,)
     serializer_class = ProfileSerializer
 
@@ -19,11 +19,7 @@ class ProfileRetrieveAPIView(RetrieveAPIView):
         # Try to retrieve the requested profile and throw an exception if the
         # profile could not be found.
         try:
-            # We use the `select_related` method to avoid making unnecessary
-            # database calls.
-            profile = Profile.objects.select_related('user').get(
-                user__username=username
-            )
+            profile = self.queryset.get(user__username=username)
         except Profile.DoesNotExist:
             raise NotFound('A profile with this username was not found.')
 

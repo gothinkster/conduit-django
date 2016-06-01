@@ -16,7 +16,7 @@ class ArticleViewSet(mixins.CreateModelMixin,
                      viewsets.GenericViewSet):
 
     lookup_field = 'slug'
-    queryset = Article.objects.all()
+    queryset = Article.objects.select_related('author', 'author__user')
     permission_classes = (IsAuthenticatedOrReadOnly,)
     renderer_classes = (ArticleJSONRenderer,)
     serializer_class = ArticleSerializer
@@ -33,13 +33,22 @@ class ArticleViewSet(mixins.CreateModelMixin,
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+    def retrieve(self, request, slug):
+        try:
+            serializer_instance = self.queryset.get(slug=slug)
+        except Article.DoesNotExist:
+            raise NotFound('An article with this slug does not exist.')
+
+        serializer = self.serializer_class(serializer_instance)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def update(self, request, slug):
         try:
-            serializer_instance = Article.objects.get(slug=slug)
+            serializer_instance = self.queryset.get(slug=slug)
         except Article.DoesNotExist:
             raise NotFound('An article with this slug does not exist.')
             
-        serializer_instance = get_object_or_404(Article, slug=slug)
         serializer_data = request.data.get('article', {})
 
         serializer = self.serializer_class(

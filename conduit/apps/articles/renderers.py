@@ -2,5 +2,5 @@ from conduit.apps.core.renderers import ConduitJSONRenderer
 
 
 class ArticleJSONRenderer(ConduitJSONRenderer):
-    namespace = 'article'
-    namespace_plural = 'articles'
+    object_label = 'article'
+    object_label_plural = 'articles'
