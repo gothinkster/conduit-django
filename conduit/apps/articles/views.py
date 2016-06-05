@@ -1,5 +1,3 @@
-from django.shortcuts import get_object_or_404
-
 from rest_framework import generics, mixins, status, viewsets
 from rest_framework.exceptions import NotFound
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -64,13 +62,20 @@ class CommentsListCreateAPIView(generics.ListCreateAPIView):
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'article_slug'
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Comment.objects.select_related(
+        'article', 'article__author', 'article__author__user',
+        'author', 'author__user'
+    )
     renderer_classes = (CommentJSONRenderer,)
     serializer_class = CommentSerializer
 
-    def get_queryset(self):
+    def filter_queryset(self, queryset):
+        # The built-in list function calls `filter_queryset`. Since we only
+        # want comments for a specific article, this is a good place to do
+        # that filtering.
         filters = {self.lookup_field: self.kwargs[self.lookup_url_kwarg]}
 
-        return Comment.objects.filter(**filters)
+        return queryset.filter(**filters)
 
     def create(self, request, article_slug=None):
         data = request.data.get('comment', {})
@@ -99,6 +104,6 @@ class CommentsDestroyAPIView(generics.DestroyAPIView):
         except Comment.DoesNotExist:
             raise NotFound('A comment with this ID does not exist.')
 
-        comment.destroy()
+        comment.delete()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
