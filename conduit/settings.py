@@ -138,6 +138,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'conduit.apps.authentication.backends.JWTAuthentication',
     ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'EXCEPTION_HANDLER': 'conduit.apps.core.exceptions.core_exception_handler',
     'NON_FIELD_ERRORS_KEY': 'error',
+    'PAGE_SIZE': 20,
 }
